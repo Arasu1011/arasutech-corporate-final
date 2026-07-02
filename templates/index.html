@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{ company.name }} | M&E Contractor Singapore</title>
+<meta name="description" content="ARASUTECH SOLUTION PTE LTD is a Singapore-based M&E contractor providing Electrical, ELV, BMS, Instrumentation and Mechanical Engineering services.">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+<header class="nav">
+    <a class="brand" href="#top">
+        <img src="{{ url_for('static', filename='images/ATS logo.png') }}" alt="ATS Logo">
+        <div><strong>{{ company.name }}</strong><span>Pure M&E Specialists</span></div>
+    </a>
+    <nav>
+        <a href="#services">Services</a><a href="#projects">Projects</a><a href="#director">Director</a><a href="#gallery">Gallery</a><a href="#contact">Contact</a>
+        <a class="btn-small" href="{{ url_for('profile') }}">Download Profile</a>
+    </nav>
+</header>
+
+<section class="hero" id="top">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+        <p class="eyebrow">Singapore M&E Engineering Contractor</p>
+        <h1>Reliable Electrical, ELV, BMS & Instrumentation Partner</h1>
+        <p>Supporting main contractors with safe execution, quality workmanship and timely project delivery across Singapore infrastructure, commercial and industrial projects.</p>
+        <div class="hero-actions"><a class="btn-primary" href="{{ url_for('profile') }}">Download Company Profile</a><a class="btn-secondary" href="#contact">Request Quotation</a></div>
+        <div class="stats"><div><b>2016</b><span>Established</span></div><div><b>13+</b><span>Major Projects</span></div><div><b>M&E</b><span>Specialist</span></div><div><b>{{ company.uen }}</b><span>UEN</span></div></div>
+    </div>
+</section>
+
+<section class="section intro">
+    <div><p class="eyebrow">About Arasutech</p><h2>Engineering solutions built on safety, quality and long-term partnerships.</h2></div>
+    <p>ARASUTECH SOLUTION PTE LTD provides comprehensive Electrical, Mechanical, ELV, BMS and Instrumentation services. We support main contractors, facility owners, industrial clients and project teams from installation to testing and commissioning.</p>
+</section>
+
+<section class="section cards" id="services">
+    <p class="eyebrow center">Our Services</p><h2 class="center">Complete M&E Support for Contractors</h2>
+    <div class="grid">{% for service in services %}<div class="card"><h3>{{ service.title }}</h3><ul>{% for item in service["items"] %}<li>{{ item }}</li>{% endfor %}</ul></div>{% endfor %}</div>
+</section>
+
+<section class="section dark" id="why">
+    <p class="eyebrow center">Why Choose Us</p><h2 class="center">A dependable subcontract partner for demanding site environments.</h2>
+    <div class="why-grid"><div><strong>Safety First</strong><span>Responsible work execution and site discipline.</span></div><div><strong>Quality Workmanship</strong><span>Durable technical execution focused on client satisfaction.</span></div><div><strong>On-Time Delivery</strong><span>Project-focused coordination with site teams.</span></div><div><strong>Versatile Team</strong><span>Electrical, ELV, BMS, ECS, fire alarm and instrumentation.</span></div></div>
+</section>
+
+<section class="section" id="director">
+    <p class="eyebrow center">Leadership</p><h2 class="center">Director Profile</h2>
+    <div class="director-card">
+        <img src="{{ url_for('static', filename='images/arasu.png') }}" alt="Vinayaga Meyyarasu" class="director-photo">
+        <div class="director-info"><h2>Mr. Vinayaga Meyyarasu</h2><h4>Managing Director & M&E Specialist</h4><p>Experienced M&E professional supporting main contractors in electrical, ELV, BMS, instrumentation, environmental control systems, testing and commissioning works.</p><div class="badges"><span>Electrical</span><span>BMS</span><span>ECS</span><span>ELV</span><span>T&C</span></div></div>
+    </div>
+</section>
+
+<section class="section" id="projects">
+    <p class="eyebrow center">Project Experience</p><h2 class="center">Completed Project Track Record</h2>
+    <div class="project-table-wrap"><table class="project-table"><thead><tr><th>Project</th><th>Scope</th><th>Client / Main Contractor</th><th>Status</th></tr></thead><tbody>{% for p in projects %}<tr><td>{{ p.name }}</td><td>{{ p.type }}</td><td>{{ p.client }}</td><td><span class="status">{{ p.status }}</span></td></tr>{% endfor %}</tbody></table></div>
+</section>
+
+<section class="section gallery-section" id="gallery">
+    <p class="eyebrow center">Site Gallery</p><h2 class="center">Workers & Site Work Photos</h2>
+    {% if gallery %}<div class="marquee"><div class="marquee-track">{% for img in gallery %}<img onclick="openLightbox(this.src)" src="{{ url_for('static', filename='images/' + img) }}" alt="Site work photo" loading="lazy">{% endfor %}{% for img in gallery %}<img onclick="openLightbox(this.src)" src="{{ url_for('static', filename='images/' + img) }}" alt="Site work photo" loading="lazy">{% endfor %}</div></div>
+    <div class="gallery-grid">{% for img in gallery %}<img onclick="openLightbox(this.src)" src="{{ url_for('static', filename='images/' + img) }}" alt="Site work photo" loading="lazy">{% endfor %}</div>{% else %}<p class="center muted">Add site photos inside <b>static/images</b> as photo1 (1).jpeg to photo1 (60).jpeg and refresh the website.</p>{% endif %}
+</section>
+
+<section class="section cta"><h2>Share one professional website link with clients and main contractors.</h2><p>View services, project experience, site photos and download the company profile directly.</p><a class="btn-primary" href="{{ url_for('profile') }}">Download Profile PDF</a></section>
+
+<section class="section contact" id="contact">
+    <div><p class="eyebrow">Contact</p><h2>Request a quotation or subcontract discussion</h2><p><strong>Address:</strong> {{ company.address }}</p><p><strong>Phone:</strong> {{ company.phone1 }} / {{ company.phone2 }}</p><p><strong>Email:</strong> {{ company.email }}</p><p><strong>UEN:</strong> {{ company.uen }}</p></div>
+    <form method="POST" action="{{ url_for('contact') }}">{% with messages = get_flashed_messages() %}{% if messages %}<div class="success">{{ messages[0] }}</div>{% endif %}{% endwith %}<input name="name" placeholder="Your Name / Company" required><input name="email" type="email" placeholder="Email Address" required><input name="phone" placeholder="Phone Number"><textarea name="message" rows="5" placeholder="Tell us about your project requirement" required></textarea><button class="btn-primary" type="submit">Submit Enquiry</button></form>
+</section>
+
+<footer class="footer"><div class="footer-left"><img src="{{ url_for('static', filename='images/ATS logo.png') }}" alt="ATS Logo" class="footer-logo"></div><div class="footer-right"><h3>{{ company.name }}</h3><p><strong>UEN:</strong> {{ company.uen }}</p><p><strong>Address:</strong><br>Lorong 8,<br>Toa Payoh,<br>Singapore 310231</p><p><strong>Tel:</strong> {{ company.phone1 }} / {{ company.phone2 }}</p><p><strong>Email:</strong> {{ company.email }}</p></div></footer><div class="copyright">© 2026 ARASUTECH SOLUTION PTE LTD | All Rights Reserved</div>
+<div id="lightbox" onclick="closeLightbox()"><img id="lightboxImg" alt="Gallery large view"></div>
+<a class="whatsapp" href="https://wa.me/6587090767" target="_blank">WhatsApp</a>
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body></html>
