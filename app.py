@@ -39,7 +39,6 @@ PROJECTS = [
     {"name": "4-In-1 Rail and Bus Depot", "type": "BMS / Environmental Control System", "client": "Primustech Pte Ltd", "status": "Completed"},
     {"name": "Mandai Lake Road – East Arrival Node (Commercial Blocks, Transport Hub & Indoor Attractions)", "type": "ELV Systems", "client": "Quantum Automation Pte Ltd", "status": "Completed"}
 ]
-]
 
 # VIDEOS shown in the "Videos" section of the website.
 # YouTube: put only the video ID (the part after "v=" in the link).
