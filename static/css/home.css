@@ -475,3 +475,8 @@ html[data-lang="zh"] .ag-strip, html[data-lang="zh"] .ag-projects, html[data-lan
   .ag-btn-lg { font-size: 19px; padding: 12px 22px; }
   .ag-hero-actions { flex-direction: column; align-items: stretch; text-align: center; }
 }
+/* ---------- Footer & contact email links ---------- */
+.footer a { color: #fbb03b; text-decoration: none; font-weight: 600; word-break: break-word; }
+.footer a:hover { color: #fff; text-decoration: underline; }
+.contact a { color: #0a2f57; font-weight: 600; word-break: break-word; }
+.contact a:hover { color: #f7941d; }
