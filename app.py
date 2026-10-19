@@ -38,6 +38,16 @@ PROJECTS = [
     {"name": "4-In-1 Rail and Bus Depot", "type": "BMS / Environmental Control System", "client": "Primustech Pte Ltd", "status": "Completed"}
 ]
 
+# VIDEOS shown in the "Videos" section of the website.
+# YouTube: put only the video ID (the part after "v=" in the link).
+#   Example link: https://www.youtube.com/watch?v=AbCdEf12345  ->  "AbCdEf12345"
+# MP4 file: put the file in static/videos/ and use {"file": "name.mp4"}
+# While this list is empty, the website shows "Videos coming soon."
+VIDEOS = [
+    # {"youtube": "AbCdEf12345", "title": "Suntec City electrical works"},
+    # {"file": "site1.mp4", "title": "Switchgear testing"},
+]
+
 def gallery_images():
     folder = os.path.join(app.static_folder, "images")
     allowed = {".jpg", ".jpeg", ".png", ".webp"}
@@ -57,7 +67,7 @@ def gallery_images():
 
 @app.route("/")
 def home():
-    return render_template("index.html", company=COMPANY, services=SERVICES, projects=PROJECTS, gallery=gallery_images())
+    return render_template("index.html", company=COMPANY, services=SERVICES, projects=PROJECTS, gallery=gallery_images(), videos=VIDEOS)
 
 @app.route("/profile")
 def profile():
