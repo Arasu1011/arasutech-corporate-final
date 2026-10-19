@@ -49,6 +49,68 @@ VIDEOS = [
     # {"file": "site1.mp4", "title": "Switchgear testing"},
 ]
 
+# ================= NEW HOME PAGE DESIGN (Arasutech Groups) =================
+
+# Group companies shown in the top bar. Later, to use a real logo, put the
+# image in static/images/logos/ and set "logo": "filename.png".
+GROUP_COMPANIES = [
+    {"short": "AC", "name": "Arasu Corporation", "tag": "Construction | Infrastructure | Projects · India", "color": "#d4a017", "logo": "arasu-corporation.png"},
+    {"short": "AB", "name": "Arasutech Builders and Developers Pvt Ltd", "tag": "Builders | Developers | Real Estate", "color": "#1f6fb2", "logo": "arasutech-builders.png"},
+    {"short": "AS", "name": "Arasutech Solution Pte Ltd", "tag": "M&E | Electrical | ELV | Manpower Supply · UEN 201611406D", "color": "#0a2f57", "logo": "ats.png"},
+    {"short": "V", "name": "Vertex Electrical Engineering Pte Ltd", "tag": "Electrical | ELV | Fire | Data | Security", "color": "#c8102e", "logo": "vertex.png"},
+]
+
+# Service icons strip under the banner (icon names match static/images/icons.svg symbols)
+SERVICE_STRIP = [
+    {"key": "electrical", "label": "Electrical Works", "icon": "bolt", "color": "#f5a623"},
+    {"key": "acmv", "label": "ACMV & Ventilation", "icon": "snow", "color": "#1e88e5"},
+    {"key": "fire", "label": "Fire Protection & Fire Alarm", "icon": "flame", "color": "#e53935"},
+    {"key": "plumbing", "label": "Plumbing & Sanitary", "icon": "tap", "color": "#1976d2"},
+    {"key": "elv", "label": "Data & ELV Systems", "icon": "server", "color": "#1565c0"},
+    {"key": "led", "label": "LED Works & LED Walls", "icon": "screen", "color": "#0288d1"},
+    {"key": "carpark", "label": "Car Park Management System", "icon": "parking", "color": "#0a2f57"},
+    {"key": "construction", "label": "Construction Works", "icon": "building", "color": "#163a6b"},
+    {"key": "builders", "label": "Builders & Developers", "icon": "home", "color": "#0f9d8a"},
+    {"key": "interior", "label": "Interior Decoration", "icon": "sofa", "color": "#8e44ad"},
+    {"key": "solar", "label": "Solar Panel Solutions", "icon": "sun", "color": "#f9a825"},
+    {"key": "painting", "label": "Painting & Finishing Works", "icon": "brush", "color": "#e53935"},
+]
+
+# Project category cards. Upload photos to static/images/projects/ with these
+# exact names. Until a photo is uploaded, a site photo from the gallery is shown.
+PROJECT_CARDS = [
+    {"key": "malls", "label": "Malls & Office Towers (Suntec City etc)", "image": "malls.jpg", "fallback": "photo1 (31).jpeg"},
+    {"key": "nus", "label": "NUS Schools & Universities", "image": "nus.jpg", "fallback": "photo1 (46).jpeg"},
+    {"key": "schools", "label": "Schools & Colleges", "image": "schools.jpg", "fallback": "photo1 (35).jpeg"},
+    {"key": "mrt", "label": "MRT Projects", "image": "mrt.jpg", "fallback": "photo1 (7).jpeg"},
+    {"key": "hdb", "label": "HDB Works", "image": "hdb.jpg", "fallback": "photo1 (20).jpeg"},
+    {"key": "retail", "label": "Restaurants, Shops & Supermarkets", "image": "retail.jpg", "fallback": "photo1 (39).jpeg"},
+    {"key": "gov", "label": "Government Offices (MOA, MU, MOE, MOF etc)", "image": "gov.jpg", "fallback": "photo1 (34).jpeg"},
+    {"key": "halls", "label": "Convention Halls & Commercial Blocks", "image": "halls.jpg", "fallback": "photo1 (49).jpeg"},
+]
+
+# Big banner photo: upload as static/images/hero.jpg (wide photo, about 1920x900)
+HERO_IMAGE = "hero.jpg"
+HERO_FALLBACK = "photo1 (7).jpeg"
+
+
+def static_image(path, fallback):
+    """Return the uploaded image if it exists, otherwise the fallback photo."""
+    if os.path.exists(os.path.join(app.static_folder, "images", path)):
+        return "images/" + path
+    return "images/" + fallback
+
+
+def home_design():
+    cards = [dict(c, src=static_image("projects/" + c["image"], c["fallback"])) for c in PROJECT_CARDS]
+    return {
+        "group_companies": GROUP_COMPANIES,
+        "service_strip": SERVICE_STRIP,
+        "project_cards": cards,
+        "hero_image": static_image(HERO_IMAGE, HERO_FALLBACK),
+    }
+
+
 # Photos to hide from the website gallery (file stays in the folder, just not shown)
 HIDDEN_PHOTOS = ["photo1 (8).jpeg", "photo1 (18).jpeg", "photo1 (19).jpeg"]
 
@@ -71,7 +133,7 @@ def gallery_images():
 
 @app.route("/")
 def home():
-    return render_template("index.html", company=COMPANY, services=SERVICES, projects=PROJECTS, gallery=gallery_images(), videos=VIDEOS)
+    return render_template("index.html", company=COMPANY, services=SERVICES, projects=PROJECTS, gallery=gallery_images(), videos=VIDEOS, **home_design())
 
 @app.route("/profile")
 def profile():
