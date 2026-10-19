@@ -11,7 +11,8 @@ COMPANY = {
     "address": "Lorong 8,Toa Payoh,Singapore 310231",
     "phone1": "+65 8709 0767",
     "phone2": "+65 8709 0767",
-    "email": "meyyarasu@ymail.com",
+    "email": "arasutech2016@gmail.com",
+    "email2": "arasutech@yahoo.com",
     "website": "www.arasutech.com"
 }
 
@@ -48,6 +49,9 @@ VIDEOS = [
     # {"file": "site1.mp4", "title": "Switchgear testing"},
 ]
 
+# Photos to hide from the website gallery (file stays in the folder, just not shown)
+HIDDEN_PHOTOS = ["photo1 (8).jpeg", "photo1 (18).jpeg", "photo1 (19).jpeg"]
+
 def gallery_images():
     folder = os.path.join(app.static_folder, "images")
     allowed = {".jpg", ".jpeg", ".png", ".webp"}
@@ -56,7 +60,7 @@ def gallery_images():
         for filename in os.listdir(folder):
             lower = filename.lower()
             if any(lower.endswith(ext) for ext in allowed):
-                if filename not in ["ATS logo.png", "arasu.png"]:
+                if filename not in ["ATS logo.png", "arasu.png"] and filename not in HIDDEN_PHOTOS:
                     images.append(filename)
     # natural sort for photo1 (1).jpeg to photo1 (60).jpeg
     def sort_key(name):
