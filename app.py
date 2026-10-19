@@ -36,7 +36,7 @@ PROJECTS = [
     {"name": "Dover Church Annex and Nursing Home at SJSM", "type": "Electrical & ELV Works", "client": "Kurihara Kogyo Co., Ltd", "status": "Completed"},
     {"name": "Changi Water Reclamation Plant", "type": "SCADA & Instrumentation System", "client": "Primustech Pte Ltd", "status": "Completed"},
     {"name": "Singapore Food Agency Techquest Building", "type": "BMS", "client": "Primustech Pte Ltd", "status": "Completed"},
-    {"name": "4-In-1 Rail and Bus Depot", "type": "BMS / Environmental Control System", "client": "Primustech Pte Ltd", "status": "Completed"}
+    {"name": "4-In-1 Rail and Bus Depot", "type": "BMS / Environmental Control System", "client": "Primustech Pte Ltd", "status": "Completed"},
     {"name": "Mandai Lake Road – East Arrival Node (Commercial Blocks, Transport Hub & Indoor Attractions)", "type": "ELV Systems", "client": "Quantum Automation Pte Ltd", "status": "Completed"}
 ]
 ]
