@@ -7,40 +7,144 @@
 <meta name="description" content="ARASUTECH SOLUTION PTE LTD is a Singapore-based M&E contractor providing Electrical, ELV, BMS, Instrumentation and Mechanical Engineering services.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Tamil:wght@400;600;700&family=Noto+Sans+SC:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Barlow:wght@400;500;600;700&family=Noto+Sans+Tamil:wght@400;600;700&family=Noto+Sans+SC:wght@400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 <link rel="stylesheet" href="{{ url_for('static', filename='css/extras.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
 </head>
 <body>
-<header class="nav">
-    <a class="brand" href="#top">
-        <img src="{{ url_for('static', filename='images/ATS logo.png') }}" alt="ATS Logo">
-        <div><strong>{{ company.name }}</strong><span data-i18n="brand_tagline">Pure M&E Specialists</span></div>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2 4 14h7l-1 8 9-12h-7z" fill="currentColor"/></symbol>
+    <symbol id="i-snow" viewBox="0 0 24 24"><path d="M12 2v20M4 6l16 12M20 6 4 18M9 3l3 3 3-3M9 21l3-3 3 3" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></symbol>
+    <symbol id="i-flame" viewBox="0 0 24 24"><path d="M12 2s5 5 5 10a5 5 0 0 1-10 0c0-2 1-3.5 2-4.5 0 2 1 3 2 3 0-3 1-5.5 1-8.5z" fill="currentColor"/></symbol>
+    <symbol id="i-tap" viewBox="0 0 24 24"><path d="M4 9h9V6h3v3h4v4H4zM16 13v3M16 19a1.5 1.5 0 0 0 1.5-1.5c0-1-1.5-2.5-1.5-2.5s-1.5 1.5-1.5 2.5A1.5 1.5 0 0 0 16 19z" fill="currentColor"/></symbol>
+    <symbol id="i-server" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="5" rx="1" stroke="currentColor" stroke-width="2" fill="none"/><rect x="3" y="10" width="18" height="5" rx="1" stroke="currentColor" stroke-width="2" fill="none"/><rect x="3" y="17" width="18" height="4" rx="1" stroke="currentColor" stroke-width="2" fill="none"/><circle cx="7" cy="5.5" r="1" fill="currentColor"/><circle cx="7" cy="12.5" r="1" fill="currentColor"/></symbol>
+    <symbol id="i-screen" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="13" rx="2" stroke="currentColor" stroke-width="2" fill="none"/><path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="2"/></symbol>
+    <symbol id="i-parking" viewBox="0 0 24 24"><path d="M7 21V3h6a5 5 0 0 1 0 10H7" stroke="currentColor" stroke-width="3" fill="none"/></symbol>
+    <symbol id="i-building" viewBox="0 0 24 24"><path d="M4 21V5l8-3v19M12 8h8v13M2 21h20M7 8h2M7 12h2M7 16h2M15 12h2M15 16h2" stroke="currentColor" stroke-width="2" fill="none"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.5" fill="currentColor"/><path d="M12 1v3M12 20v3M1 12h3M20 12h3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1" stroke="currentColor" stroke-width="2"/></symbol>
+    <symbol id="i-brush" viewBox="0 0 24 24"><path d="M3 4h14v6H3zM17 7h3v6h-9v3" stroke="currentColor" stroke-width="2" fill="none"/><rect x="9" y="16" width="4" height="6" rx="1" fill="currentColor"/></symbol>
+    <symbol id="i-team" viewBox="0 0 24 24"><circle cx="12" cy="7" r="3.5" fill="currentColor"/><circle cx="5" cy="9" r="2.5" fill="currentColor"/><circle cx="19" cy="9" r="2.5" fill="currentColor"/><path d="M5.5 20a6.5 6.5 0 0 1 13 0zM0 19a5 5 0 0 1 5-5 5 5 0 0 1 2 .4A8 8 0 0 0 4 19zM24 19a5 5 0 0 0-5-5 5 5 0 0 0-2 .4 8 8 0 0 1 3 4.6z" fill="currentColor"/></symbol>
+    <symbol id="i-hands" viewBox="0 0 24 24"><path d="m2 12 5-5 4 2 3-2 3 1 5 4-4 4-3-1-3 3-3-1-3 1z" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linejoin="round"/><path d="m9 11 3 2 3-2" stroke="currentColor" stroke-width="1.8" fill="none"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2" fill="none"/><path d="M12 7v5l3 2" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 2 4 5v6c0 5 3.5 9 8 11 4.5-2 8-6 8-11V5z" stroke="currentColor" stroke-width="2" fill="none"/><path d="m8.5 12 2.5 2.5 4.5-5" stroke="currentColor" stroke-width="2" fill="none"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="currentColor"/><path d="m7 12.5 3.2 3.2L17 9" stroke="#0a1f3d" stroke-width="2.6" fill="none" stroke-linecap="round"/></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.3.5-.4.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.6 2.1 1.1 1 2 1.3 2.3 1.4.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.2.1.7-.1 1.2z" fill="currentColor"/></symbol>
+    <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 11 12 3l9 8M5 9.5V21h5v-6h4v6h5V9.5" stroke="currentColor" stroke-width="2" fill="none" stroke-linejoin="round"/></symbol>
+    <symbol id="i-sofa" viewBox="0 0 24 24"><path d="M5 10V7a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v3M3 11a2 2 0 0 1 4 0v3h10v-3a2 2 0 0 1 4 0v6H3zM5 17v2M19 17v2" stroke="currentColor" stroke-width="2" fill="none" stroke-linejoin="round"/></symbol>
+  </defs>
+</svg>
+
+<!-- ===== Group companies bar ===== -->
+<div class="ag-groupbar" id="companies">
+    <a class="ag-mainbrand" href="#top">
+        <img class="ag-mark" src="{{ url_for('static', filename='images/logos/arasutech-groups.png') }}" alt="Arasutech Groups logo">
+        <span><strong>ARASUTECH GROUPS</strong><small data-i18n="ag_motto">Building Today | Powering Tomorrow</small></span>
     </a>
-    <nav>
-        <a href="#services" data-i18n="nav_services">Services</a><a href="#projects" data-i18n="nav_projects">Projects</a><a href="#director" data-i18n="nav_director">Director</a><a href="#gallery" data-i18n="nav_gallery">Gallery</a><a href="#videos" data-i18n="nav_videos">Videos</a><a href="#contact" data-i18n="nav_contact">Contact</a>
-        <a class="btn-small" href="{{ url_for('profile') }}" data-i18n="nav_profile">Download Profile</a>
+    <div class="ag-companies">
+        {% for c in group_companies %}
+        <div class="ag-company">
+            {% if c.logo %}<img src="{{ url_for('static', filename='images/logos/' + c.logo) }}" alt="{{ c.name }} logo">{% else %}<span class="ag-mono" style="background:{{ c.color }}">{{ c.short }}</span>{% endif %}
+            <span><b>{{ c.name }}</b><small>{{ c.tag }}</small></span>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<!-- ===== Main navigation ===== -->
+<header class="ag-nav">
+    <nav class="ag-links" aria-label="Main">
+        <a href="#top" class="active" data-i18n="nav_home">Home</a>
+        <a href="#about" data-i18n="nav_about">About Us</a>
+        <a href="#companies" data-i18n="nav_companies">Our Companies</a>
+        <a href="#services" data-i18n="nav_services">Our Services</a>
+        <a href="#projects-showcase" data-i18n="nav_projects">Projects</a>
+        <a href="#gallery" data-i18n="nav_gallery">Gallery</a>
+        <a href="#videos" data-i18n="nav_videos">Videos</a>
+        <a href="#why" data-i18n="nav_why">Why Us</a>
+        <a href="#contact" data-i18n="nav_contact">Contact Us</a>
+    </nav>
+    <div class="ag-nav-right">
+        <a class="ag-phone" href="https://wa.me/6587090767" target="_blank" rel="noopener"><svg><use href="#i-phone"/></svg><span>{{ company.phone1 }}</span></a>
         <select id="langSelect" class="lang-select" aria-label="Language">
             <option value="en">English</option>
             <option value="ta">தமிழ்</option>
             <option value="zh">中文</option>
             <option value="ms">Bahasa Melayu</option>
         </select>
-    </nav>
+        <a class="ag-btn-red" href="#contact" data-i18n="btn_free_quote">Get a Free Quotation</a>
+    </div>
 </header>
 
-<section class="hero" id="top">
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-        <p class="eyebrow" data-i18n="hero_eyebrow">Singapore M&E Engineering Contractor</p>
-        <h1 data-i18n="hero_title">Reliable Electrical, ELV, BMS & Instrumentation Partner</h1>
-        <p data-i18n="hero_sub">Supporting main contractors with safe execution, quality workmanship and timely project delivery across Singapore infrastructure, commercial and industrial projects.</p>
-        <div class="hero-actions"><a class="btn-primary" href="{{ url_for('profile') }}" data-i18n="btn_download_profile">Download Company Profile</a><a class="btn-secondary" href="#contact" data-i18n="btn_quote">Request Quotation</a></div>
-        <div class="stats"><div><b>2016</b><span data-i18n="stat_established">Established</span></div><div><b>13+</b><span data-i18n="stat_projects">Major Projects</span></div><div><b>M&E</b><span data-i18n="stat_specialist">Specialist</span></div><div><b>{{ company.uen }}</b><span>UEN</span></div></div>
+<!-- ===== Hero banner ===== -->
+<section class="ag-hero" id="top" style="--hero-img:url('{{ url_for('static', filename=hero_image) }}')">
+    <div class="ag-hero-inner">
+        <div class="ag-hero-text">
+            <h1><span class="ag-h-white">ARASUTECH GROUPS</span><span class="ag-sectors" data-i18n="hero_sectors">Construction (Builders &amp; Developers) • Interior Decoration</span><span class="ag-h-gold" data-i18n="hero_tagline">Trusted M&E Partner Since 2016</span></h1>
+            <p class="ag-countries">Singapore <i>•</i> Malaysia <i>•</i> India</p>
+            <p class="ag-onestop" data-i18n="hero_onestop">One-Stop Construction & M&E Solutions</p>
+            <ul class="ag-checks">
+                <li><svg><use href="#i-check"/></svg><span data-i18n="chk_quality">Quality Work</span></li>
+                <li><svg><use href="#i-check"/></svg><span data-i18n="chk_team">Professional & Experienced Team</span></li>
+                <li><svg><use href="#i-check"/></svg><span data-i18n="chk_rates">Affordable Rates</span></li>
+                <li><svg><use href="#i-check"/></svg><span data-i18n="chk_jobs">From Small Jobs to Major Projects</span></li>
+                <li><svg><use href="#i-check"/></svg><span data-i18n="chk_time">On Time Completion</span></li>
+            </ul>
+            <div class="ag-hero-actions">
+                <a class="ag-btn-red ag-btn-lg" href="#contact"><span data-i18n="btn_free_quote">Get a Free Quotation</span> →</a>
+                <a class="ag-btn-ghost" href="{{ url_for('profile') }}" data-i18n="btn_download_profile">Download Company Profile</a>
+            </div>
+        </div>
+        <div class="ag-hero-side">
+            <p class="ag-ribbon" data-i18n="hero_ribbon">Your Trusted Partner for Building a Better Tomorrow</p>
+            <ul class="ag-features">
+                <li><span class="ag-fi"><svg><use href="#i-team"/></svg></span><span data-i18n="feat_team">Experienced Specialist Team</span></li>
+                <li><span class="ag-fi"><svg><use href="#i-hands"/></svg></span><span data-i18n="feat_reliable">Reliable & Affordable</span></li>
+                <li><span class="ag-fi"><svg><use href="#i-clock"/></svg></span><span data-i18n="feat_time">On Time Delivery</span></li>
+                <li><span class="ag-fi"><svg><use href="#i-shield"/></svg></span><span data-i18n="feat_safe">Safe & Compliant (WSH Standard)</span></li>
+                <li><span class="ag-fi"><svg><use href="#i-team"/></svg></span><span data-i18n="feat_allinone">All-in-One Solution</span></li>
+            </ul>
+        </div>
     </div>
 </section>
 
-<section class="section intro">
+<!-- ===== Services strip ===== -->
+<section class="ag-strip" aria-label="Services">
+    {% for s in service_strip %}
+    <a class="ag-strip-item" href="#services">
+        <span class="ag-strip-icon" style="background:{{ s.color }}"><svg><use href="#i-{{ s.icon }}"/></svg></span>
+        <span data-i18n="strip_{{ s.key }}">{{ s.label }}</span>
+    </a>
+    {% endfor %}
+</section>
+
+<!-- ===== Projects showcase ===== -->
+<section class="ag-projects" id="projects-showcase">
+    <div class="ag-projects-head">
+        <h2 data-i18n="pc_heading">Our Projects</h2>
+        <p data-i18n="pc_sub">From HDB to Iconic Landmarks – We Deliver Everywhere in Singapore</p>
+        <a class="ag-btn-gold" href="#projects"><span data-i18n="pc_viewall">View All Projects</span> →</a>
+    </div>
+    <div class="ag-cards">
+        {% for p in project_cards %}
+        <figure class="ag-card">
+            <img src="{{ url_for('static', filename=p.src) }}" alt="{{ p.label }}" loading="lazy">
+            <figcaption data-i18n="pc_{{ p.key }}">{{ p.label }}</figcaption>
+        </figure>
+        {% endfor %}
+    </div>
+</section>
+
+<div class="ag-band">
+    <span class="ag-band-line"></span>
+    <svg class="ag-band-icon"><use href="#i-team"/></svg>
+    <strong>ARASUTECH GROUPS</strong>
+    <span class="ag-band-words" data-i18n="band_words">Building • Engineering • Maintaining • For a Better Tomorrow</span>
+    <span class="ag-band-line"></span>
+</div>
+
+<section class="section intro" id="about">
     <div><p class="eyebrow" data-i18n="about_eyebrow">About Arasutech</p><h2 data-i18n="about_title">Engineering solutions built on safety, quality and long-term partnerships.</h2></div>
     <p data-i18n="about_text">ARASUTECH SOLUTION PTE LTD provides comprehensive Electrical, Mechanical, ELV, BMS and Instrumentation services. We support main contractors, facility owners, industrial clients and project teams from installation to testing and commissioning.</p>
 </section>
