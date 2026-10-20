@@ -146,5 +146,30 @@ def contact():
     flash("Thank you. Your enquiry has been received. We will contact you shortly.")
     return redirect(url_for("home") + "#contact")
 
+# ---------- Domain & Google search settings ----------
+from flask import Response
+
+SITE_URL = "https://arasutechgroup.com"
+OLD_DOMAINS = {"arasutech.com", "www.arasutech.com"}
+
+@app.before_request
+def send_old_domain_to_new():
+    # Anyone opening arasutech.com is sent to the same page on arasutechgroup.com (permanent 301)
+    host = request.host.split(":")[0].lower()
+    if host in OLD_DOMAINS:
+        return redirect(SITE_URL + request.full_path.rstrip("?"), code=301)
+
+@app.route("/robots.txt")
+def robots():
+    return Response("User-agent: *\nAllow: /\nSitemap: " + SITE_URL + "/sitemap.xml\n", mimetype="text/plain")
+
+@app.route("/sitemap.xml")
+def sitemap():
+    xml = ('<?xml version="1.0" encoding="UTF-8"?>'
+           '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
+           '<url><loc>' + SITE_URL + '/</loc><changefreq>monthly</changefreq><priority>1.0</priority></url>'
+           '</urlset>')
+    return Response(xml, mimetype="application/xml")
+
 if __name__ == "__main__":
     app.run(debug=True)
